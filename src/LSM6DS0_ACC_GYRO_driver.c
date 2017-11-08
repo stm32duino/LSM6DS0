@@ -61,7 +61,7 @@ extern uint8_t LSM6DS0_IO_Read( void *handle, uint8_t ReadAddr, uint8_t *pBuffer
 * Output			: None
 * Return			: None
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_WriteReg(void *handle, u8_t Reg, u8_t *Bufp, u16_t len)
+mems_status_t LSM6DS0_ACC_GYRO_WriteReg(void *handle, u8_t Reg, u8_t *Bufp, u16_t len)
 {
   if ( LSM6DS0_IO_Write( handle, Reg, Bufp, len ) )
     return MEMS_ERROR;
@@ -77,7 +77,7 @@ status_t LSM6DS0_ACC_GYRO_WriteReg(void *handle, u8_t Reg, u8_t *Bufp, u16_t len
 * Output			: Data REad
 * Return			: None
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_ReadReg(void *handle, u8_t Reg, u8_t *Bufp, u16_t len)
+mems_status_t LSM6DS0_ACC_GYRO_ReadReg(void *handle, u8_t Reg, u8_t *Bufp, u16_t len)
 {
   if ( LSM6DS0_IO_Read( handle, Reg, Bufp, len ) )
     return MEMS_ERROR;
@@ -94,7 +94,7 @@ status_t LSM6DS0_ACC_GYRO_ReadReg(void *handle, u8_t Reg, u8_t *Bufp, u16_t len)
 * Output         : Status of WHO_AM_I_BIT 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_WHO_AM_I_(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_WHO_AM_I_(void *handle, u8_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_WHO_AM_I_REG, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -112,7 +112,7 @@ status_t LSM6DS0_ACC_GYRO_R_WHO_AM_I_(void *handle, u8_t *value)
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t newValue)
 {
   u8_t value;
   
@@ -135,7 +135,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t
 * Output         : Status of FS_G see LSM6DS0_ACC_GYRO_FS_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG1_G, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -152,7 +152,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t 
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t newValue)
 {
     u8_t value;
    
@@ -175,7 +175,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t
 * Output         : Status of ODR_G see LSM6DS0_ACC_GYRO_ODR_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG1_G, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -192,7 +192,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t 
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_XL_t newValue)
 {
   u8_t value;
 
@@ -215,7 +215,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GY
 * Output         : Status of FS_XL see LSM6DS0_ACC_GYRO_FS_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_XL_t *value)
 {
   if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG6_XL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -232,7 +232,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYR
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_XL_t newValue)
 {
   u8_t value;
  
@@ -255,7 +255,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYR
 * Output         : Status of ODR_XL see LSM6DS0_ACC_GYRO_ODR_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_XL_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG6_XL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -272,7 +272,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t newValue)
 {
   u8_t value;
 
@@ -295,7 +295,7 @@ status_t  LSM6DS0_ACC_GYRO_W_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_
 * Output         : Status of BDU see LSM6DS0_ACC_GYRO_BDU_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG8, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -306,13 +306,13 @@ status_t LSM6DS0_ACC_GYRO_R_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t
 }
 
 /*******************************************************************************
-* Function Name  : status_t LSM6DS0_ACC_GYRO_Get_AngularRate(u8_t *buff)
+* Function Name  : mems_status_t LSM6DS0_ACC_GYRO_Get_AngularRate(u8_t *buff)
 * Description    : Read AngularRate output register
 * Input          : pointer to [u8_t]
 * Output         : AngularRate buffer u8_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Get_AngularRate(void *handle, u8_t *buff) 
+mems_status_t LSM6DS0_ACC_GYRO_Get_AngularRate(void *handle, u8_t *buff) 
 {
   u8_t i, j, k;
   u8_t numberOfByteForDimension;
@@ -334,13 +334,13 @@ status_t LSM6DS0_ACC_GYRO_Get_AngularRate(void *handle, u8_t *buff)
  }
 
 /*******************************************************************************
-* Function Name  : status_t LSM6DS0_ACC_GYRO_Get_Acceleration(u8_t *buff)
+* Function Name  : mems_status_t LSM6DS0_ACC_GYRO_Get_Acceleration(u8_t *buff)
 * Description    : Read Acceleration output register
 * Input          : pointer to [u8_t]
 * Output         : Acceleration buffer u8_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Get_Acceleration(void *handle, u8_t *buff) 
+mems_status_t LSM6DS0_ACC_GYRO_Get_Acceleration(void *handle, u8_t *buff) 
 {
   u8_t i, j, k;
   u8_t numberOfByteForDimension;
@@ -369,7 +369,7 @@ status_t LSM6DS0_ACC_GYRO_Get_Acceleration(void *handle, u8_t *buff)
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityThreshold(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityThreshold(void *handle, u8_t newValue)
 {
   u8_t value;
 
@@ -395,7 +395,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityThreshold(void *handle, u8_t newValue
 * Output         : Status of ACT_THS 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInactivityThreshold(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInactivityThreshold(void *handle, u8_t *value)
 {
      if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ACT_THS, (u8_t *)value, 1) )
         return MEMS_ERROR;
@@ -413,7 +413,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInactivityThreshold(void *handle, u8_t *value)
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t newValue)
 {
   u8_t value;
 
@@ -436,7 +436,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_S
 * Output         : Status of SLEEP_ON_INACT_EN see LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t *value)
 {
      if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ACT_THS, (u8_t *)value, 1) )
         return MEMS_ERROR;
@@ -453,7 +453,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SL
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityDuration(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityDuration(void *handle, u8_t newValue)
 {
 	u8_t value;
 
@@ -479,7 +479,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityDuration(void *handle, u8_t newValue)
 * Output         : Status of ACT_DUR 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInactivityDuration(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInactivityDuration(void *handle, u8_t *value)
 {
   
      if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ACT_DUR, (u8_t *)value, 1) )
@@ -498,7 +498,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInactivityDuration(void *handle, u8_t *value)
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_XL_t newValue)
 {
 	u8_t value;
 
@@ -521,7 +521,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisX(void *handle, LSM6
 * Output         : Status of XLIE_XL see LSM6DS0_ACC_GYRO_XLIE_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_XL_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_XL, (u8_t *)value, 1) )
@@ -539,7 +539,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisX(void *handle, LSM6D
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_XL_t newValue)
 {
   u8_t value;
  
@@ -562,7 +562,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisX(void *handle, LSM
 * Output         : Status of XHIE_XL see LSM6DS0_ACC_GYRO_XHIE_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_XL_t *value)
 {
 
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_XL, (u8_t *)value, 1) )
@@ -580,7 +580,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisX(void *handle, LSM6
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_XL_t newValue)
 {
   u8_t value;
 
@@ -603,7 +603,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisY(void *handle, LSM6
 * Output         : Status of YLIE_XL see LSM6DS0_ACC_GYRO_YLIE_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_XL_t *value)
 {
 
      if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_XL, (u8_t *)value, 1) )
@@ -621,7 +621,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisY(void *handle, LSM6D
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_XL_t newValue)
 {
   u8_t value;
   
@@ -645,7 +645,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisY(void *handle, LSM
 * Output         : Status of YHIE_XL see LSM6DS0_ACC_GYRO_YHIE_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_XL_t *value)
 {
 
      if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_XL, (u8_t *)value, 1) )
@@ -663,7 +663,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisY(void *handle, LSM6
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_XL_t newValue)
 {
   u8_t value;
 
@@ -686,7 +686,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6
 * Output         : Status of ZLIE_XL see LSM6DS0_ACC_GYRO_ZLIE_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_XL_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_XL, (u8_t *)value, 1) )
@@ -704,7 +704,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6D
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_XL_t newValue)
 {
   u8_t value;
  
@@ -727,7 +727,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisZ(void *handle, LSM
 * Output         : Status of ZHIE_XL see LSM6DS0_ACC_GYRO_ZHIE_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_XL_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_XL, (u8_t *)value, 1) )
@@ -745,7 +745,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisZ(void *handle, LSM6
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t newValue)
 {
   u8_t value;
  
@@ -768,7 +768,7 @@ status_t  LSM6DS0_ACC_GYRO_W_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t new
 * Output         : Status of 6D see LSM6DS0_ACC_GYRO_6D_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_XL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -785,7 +785,7 @@ status_t LSM6DS0_ACC_GYRO_R_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t *val
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerInterruptCombination(void *handle, LSM6DS0_ACC_GYRO_AOI_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerInterruptCombination(void *handle, LSM6DS0_ACC_GYRO_AOI_XL_t newValue)
 {
   u8_t value;
  
@@ -808,7 +808,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerInterruptCombination(void *handle, LSM
 * Output         : Status of AOI_XL see LSM6DS0_ACC_GYRO_AOI_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptCombination(void *handle, LSM6DS0_ACC_GYRO_AOI_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptCombination(void *handle, LSM6DS0_ACC_GYRO_AOI_XL_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_XL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -825,7 +825,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptCombination(void *handle, LSM6
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisX(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisX(void *handle, u8_t newValue)
 {
   u8_t value;
 
@@ -851,7 +851,7 @@ status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisX(void *handle, u8_t newVa
 * Output         : Status of THS_XL_X 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisX(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisX(void *handle, u8_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_THS_X_XL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -869,7 +869,7 @@ status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisX(void *handle, u8_t *value
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisY(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisY(void *handle, u8_t newValue)
 {
   u8_t value;
  
@@ -895,7 +895,7 @@ status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisY(void *handle, u8_t newVa
 * Output         : Status of THS_XL_Y 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisY(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisY(void *handle, u8_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_THS_Y_XL, (u8_t *)value, 1) )
@@ -914,7 +914,7 @@ status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisY(void *handle, u8_t *value
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisZ(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisZ(void *handle, u8_t newValue)
 {
   u8_t value;
  
@@ -940,7 +940,7 @@ status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisZ(void *handle, u8_t newVa
 * Output         : Status of THS_XL_Z 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisZ(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisZ(void *handle, u8_t *value)
 {
      if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_THS_Z_XL, (u8_t *)value, 1) )
         return MEMS_ERROR;
@@ -958,7 +958,7 @@ status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisZ(void *handle, u8_t *value
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptDuration(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptDuration(void *handle, u8_t newValue)
 {
   u8_t value;
 
@@ -984,7 +984,7 @@ status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptDuration(void *handle, u8_t newValue)
 * Output         : Status of DUR_XL 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_XL_InterruptDuration(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_InterruptDuration(void *handle, u8_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_DUR_XL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -1002,7 +1002,7 @@ status_t LSM6DS0_ACC_GYRO_R_XL_InterruptDuration(void *handle, u8_t *value)
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_XL_t newValue)
 {
   u8_t value;
   
@@ -1024,7 +1024,7 @@ status_t  LSM6DS0_ACC_GYRO_W_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT
 * Output         : Status of WAIT_XL see LSM6DS0_ACC_GYRO_WAIT_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_XL_t *value)
 {
      if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_DUR_XL, (u8_t *)value, 1) )
         return MEMS_ERROR;
@@ -1041,7 +1041,7 @@ status_t LSM6DS0_ACC_GYRO_R_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterReference(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterReference(void *handle, u8_t newValue)
 {
   u8_t value;
 
@@ -1067,7 +1067,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterReference(void *handle, u8_t newV
 * Output         : Status of REF_G 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterReference(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterReference(void *handle, u8_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_REFERENCE_G, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -1085,7 +1085,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterReference(void *handle, u8_t *valu
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_XL_t newValue)
 {
   u8_t value;
 
@@ -1108,7 +1108,7 @@ status_t  LSM6DS0_ACC_GYRO_W_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_IN
 * Output         : Status of INT_DRDY_XL see LSM6DS0_ACC_GYRO_INT_DRDY_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_XL_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_CTRL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -1125,7 +1125,7 @@ status_t LSM6DS0_ACC_GYRO_R_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_G_t newValue)
 {
   u8_t value;
  
@@ -1148,7 +1148,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_
 * Output         : Status of INT_DRDY_G see LSM6DS0_ACC_GYRO_INT_DRDY_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_G_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_CTRL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -1165,7 +1165,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_I
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_t newValue)
 {
   u8_t value;
 
@@ -1188,7 +1188,7 @@ status_t  LSM6DS0_ACC_GYRO_W_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT
 * Output         : Status of INT__BOOT see LSM6DS0_ACC_GYRO_INT__BOOT_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_CTRL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -1205,7 +1205,7 @@ status_t LSM6DS0_ACC_GYRO_R_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FTH_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FTH_t newValue)
 {
   u8_t value;
  
@@ -1228,7 +1228,7 @@ status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO
 * Output         : Status of INT_FTH see LSM6DS0_ACC_GYRO_INT_FTH_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FTH_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FTH_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_CTRL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -1245,7 +1245,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR_t newValue)
 {
   u8_t value;
   
@@ -1268,7 +1268,7 @@ status_t  LSM6DS0_ACC_GYRO_W_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OV
 * Output         : Status of INT_OVR see LSM6DS0_ACC_GYRO_INT_OVR_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_CTRL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -1285,7 +1285,7 @@ status_t LSM6DS0_ACC_GYRO_R_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FSS5_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FSS5_t newValue)
 {
   u8_t value;
  
@@ -1308,7 +1308,7 @@ status_t  LSM6DS0_ACC_GYRO_W_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_
 * Output         : Status of INT_FSS5 see LSM6DS0_ACC_GYRO_INT_FSS5_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FSS5_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FSS5_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_CTRL, (u8_t *)value, 1) )
@@ -1326,7 +1326,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_F
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_XL_t newValue)
 {
   u8_t value;
 
@@ -1349,7 +1349,7 @@ status_t  LSM6DS0_ACC_GYRO_W_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_
 * Output         : Status of INT_IG_XL see LSM6DS0_ACC_GYRO_INT_IG_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_XL_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_CTRL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -1366,7 +1366,7 @@ status_t LSM6DS0_ACC_GYRO_R_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_I
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_G_t newValue)
 {
   u8_t value;
  
@@ -1389,7 +1389,7 @@ status_t  LSM6DS0_ACC_GYRO_W_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_
 * Output         : Status of INT_IG_G see LSM6DS0_ACC_GYRO_INT_IG_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_G_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_CTRL, (u8_t *)value, 1) )
@@ -1407,7 +1407,7 @@ status_t LSM6DS0_ACC_GYRO_R_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_I
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t newValue)
 {
   u8_t value;
  
@@ -1430,7 +1430,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t 
 * Output         : Status of LP_G 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG3_G, (u8_t *)value, 1) )
@@ -1448,7 +1448,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t *
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_G_t newValue)
 {
   u8_t value;
  
@@ -1471,7 +1471,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GY
 * Output         : Status of BW_G see LSM6DS0_ACC_GYRO_BW_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_G_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG1_G, (u8_t *)value, 1) )
@@ -1489,7 +1489,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYR
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_t newValue)
 {
   u8_t value;
 
@@ -1512,7 +1512,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL
 * Output         : Status of OUT_SEL see LSM6DS0_ACC_GYRO_OUT_SEL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG2_G, (u8_t *)value, 1) )
@@ -1530,7 +1530,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_SEL_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_SEL_G_t newValue)
 {
   u8_t value;
 
@@ -1553,7 +1553,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_
 * Output         : Status of INT_SEL_G see LSM6DS0_ACC_GYRO_INT_SEL_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_SEL_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_SEL_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG2_G, (u8_t *)value, 1) )
@@ -1571,7 +1571,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_S
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterCutOffFrequency(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterCutOffFrequency(void *handle, u8_t newValue)
 {
   u8_t value;
 
@@ -1597,7 +1597,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterCutOffFrequency(void *handle, u8_
 * Output         : Status of HPCF_G 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterCutOffFrequency(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterCutOffFrequency(void *handle, u8_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG3_G, (u8_t *)value, 1) )
@@ -1616,7 +1616,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterCutOffFrequency(void *handle, u8_t
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP_EN_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP_EN_G_t newValue)
 {
   u8_t value;
 
@@ -1639,7 +1639,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_H
 * Output         : Status of HP_EN_G see LSM6DS0_ACC_GYRO_HP_EN_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP_EN_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP_EN_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG3_G, (u8_t *)value, 1) )
@@ -1657,7 +1657,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationX(void *handle, LSM6DS0_ACC_GYRO_ORIENT_0_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationX(void *handle, LSM6DS0_ACC_GYRO_ORIENT_0_t newValue)
 {
   u8_t value;
  
@@ -1680,7 +1680,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationX(void *handle, LSM6
 * Output         : Status of ORIENT_0 see LSM6DS0_ACC_GYRO_ORIENT_0_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationX(void *handle, LSM6DS0_ACC_GYRO_ORIENT_0_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationX(void *handle, LSM6DS0_ACC_GYRO_ORIENT_0_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ORIENT_CFG_G, (u8_t *)value, 1) )
@@ -1698,7 +1698,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationX(void *handle, LSM6D
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationY(void *handle, LSM6DS0_ACC_GYRO_ORIENT_1_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationY(void *handle, LSM6DS0_ACC_GYRO_ORIENT_1_t newValue)
 {
   u8_t value;
 
@@ -1721,7 +1721,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationY(void *handle, LSM6
 * Output         : Status of ORIENT_1 see LSM6DS0_ACC_GYRO_ORIENT_1_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationY(void *handle, LSM6DS0_ACC_GYRO_ORIENT_1_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationY(void *handle, LSM6DS0_ACC_GYRO_ORIENT_1_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ORIENT_CFG_G, (u8_t *)value, 1) )
@@ -1739,7 +1739,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationY(void *handle, LSM6D
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationZ(void *handle, LSM6DS0_ACC_GYRO_ORIENT_2_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationZ(void *handle, LSM6DS0_ACC_GYRO_ORIENT_2_t newValue)
 {
   u8_t value;
  
@@ -1762,7 +1762,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationZ(void *handle, LSM6
 * Output         : Status of ORIENT_2 see LSM6DS0_ACC_GYRO_ORIENT_2_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationZ(void *handle, LSM6DS0_ACC_GYRO_ORIENT_2_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationZ(void *handle, LSM6DS0_ACC_GYRO_ORIENT_2_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ORIENT_CFG_G, (u8_t *)value, 1) )
@@ -1780,7 +1780,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationZ(void *handle, LSM6D
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t newValue)
 {
   u8_t value;
 
@@ -1803,7 +1803,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t
 * Output         : Status of SIGNZ_G see LSM6DS0_ACC_GYRO_SIGNZ_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ORIENT_CFG_G, (u8_t *)value, 1) )
@@ -1821,7 +1821,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t 
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t newValue)
 {
   u8_t value;
 
@@ -1844,7 +1844,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t
 * Output         : Status of SIGNY_G see LSM6DS0_ACC_GYRO_SIGNY_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ORIENT_CFG_G, (u8_t *)value, 1) )
@@ -1862,7 +1862,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t 
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t newValue)
 {
   u8_t value;
  
@@ -1885,7 +1885,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t
 * Output         : Status of SIGNX_G see LSM6DS0_ACC_GYRO_SIGNX_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_ORIENT_CFG_G, (u8_t *)value, 1) )
@@ -1903,7 +1903,7 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t 
 * Output         : Status of XL_G see LSM6DS0_ACC_GYRO_XL_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XL_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XL_G_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_G, (u8_t *)value, 1) )
@@ -1921,7 +1921,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisX(void *handle, LSM6DS0_AC
 * Output         : Status of XH_G see LSM6DS0_ACC_GYRO_XH_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XH_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XH_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_G, (u8_t *)value, 1) )
@@ -1939,7 +1939,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisX(void *handle, LSM6DS0_A
 * Output         : Status of YL_G see LSM6DS0_ACC_GYRO_YL_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YL_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YL_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_G, (u8_t *)value, 1) )
@@ -1957,7 +1957,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisY(void *handle, LSM6DS0_AC
 * Output         : Status of YH_G see LSM6DS0_ACC_GYRO_YH_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YH_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YH_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_G, (u8_t *)value, 1) )
@@ -1975,7 +1975,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisY(void *handle, LSM6DS0_A
 * Output         : Status of ZL_G see LSM6DS0_ACC_GYRO_ZL_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZL_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZL_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_G, (u8_t *)value, 1) )
@@ -1993,7 +1993,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisZ(void *handle, LSM6DS0_AC
 * Output         : Status of ZH_G see LSM6DS0_ACC_GYRO_ZH_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZH_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZH_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_G, (u8_t *)value, 1) )
@@ -2011,7 +2011,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisZ(void *handle, LSM6DS0_A
 * Output         : Status of IA_G see LSM6DS0_ACC_GYRO_IA_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag(void *handle, LSM6DS0_ACC_GYRO_IA_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag(void *handle, LSM6DS0_ACC_GYRO_IA_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_G, (u8_t *)value, 1) )
@@ -2029,7 +2029,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag(void *handle, LSM6DS0_ACC_GYRO_IA_
 * Output         : Status of XLDA see LSM6DS0_ACC_GYRO_XLDA_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_XLDA_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_XLDA_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_STATUS_REG, (u8_t *)value, 1) )
@@ -2047,7 +2047,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataReadyFlag(void *handle, LSM6DS0_ACC
 * Output         : Status of GDA see LSM6DS0_ACC_GYRO_GDA_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_GDA_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_GDA_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_STATUS_REG, (u8_t *)value, 1) )
@@ -2065,7 +2065,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_GDA
 * Output         : Status of TDA see LSM6DS0_ACC_GYRO_TDA_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_TemperatureDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_TDA_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_TemperatureDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_TDA_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_STATUS_REG, (u8_t *)value, 1) )
@@ -2083,7 +2083,7 @@ status_t LSM6DS0_ACC_GYRO_R_TemperatureDataReadyFlag(void *handle, LSM6DS0_ACC_G
 * Output         : Status of BOOT_STATUS see LSM6DS0_ACC_GYRO_BOOT_STATUS_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_BootRunningFlag(void *handle, LSM6DS0_ACC_GYRO_BOOT_STATUS_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_BootRunningFlag(void *handle, LSM6DS0_ACC_GYRO_BOOT_STATUS_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_STATUS_REG, (u8_t *)value, 1) )
@@ -2101,7 +2101,7 @@ status_t LSM6DS0_ACC_GYRO_R_BootRunningFlag(void *handle, LSM6DS0_ACC_GYRO_BOOT_
 * Output         : Status of INACT see LSM6DS0_ACC_GYRO_INACT_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InactivityInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_INACT_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InactivityInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_INACT_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_STATUS_REG, (u8_t *)value, 1) )
@@ -2119,7 +2119,7 @@ status_t LSM6DS0_ACC_GYRO_R_InactivityInterruptFlag(void *handle, LSM6DS0_ACC_GY
 * Output         : Status of IG_G see LSM6DS0_ACC_GYRO_IG_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IG_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IG_G_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_STATUS_REG, (u8_t *)value, 1) )
@@ -2137,7 +2137,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IG_
 * Output         : Status of IG_XL see LSM6DS0_ACC_GYRO_IG_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometerFlag(void *handle, LSM6DS0_ACC_GYRO_IG_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometerFlag(void *handle, LSM6DS0_ACC_GYRO_IG_XL_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_STATUS_REG, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2154,7 +2154,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometerFlag(void *handle, LSM6DS0_ACC
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t newValue)
 {
   u8_t value;
  
@@ -2177,7 +2177,7 @@ status_t  LSM6DS0_ACC_GYRO_W_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t 
 * Output         : Status of 4D_XL see LSM6DS0_ACC_GYRO_4D_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG4, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -2194,7 +2194,7 @@ status_t LSM6DS0_ACC_GYRO_R_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t *
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_LIR_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_LIR_XL_t newValue)
 {
   u8_t value;
 
@@ -2217,7 +2217,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_
 * Output         : Status of LIR_XL see LSM6DS0_ACC_GYRO_LIR_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_LIR_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_LIR_XL_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG4, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2234,7 +2234,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_L
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t newValue)
 {
   u8_t value;
  
@@ -2257,7 +2257,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t ne
 * Output         : Status of XEN_G see LSM6DS0_ACC_GYRO_XEN_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG4, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -2274,7 +2274,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t *va
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t newValue)
 {
   u8_t value;
  
@@ -2297,7 +2297,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t ne
 * Output         : Status of YEN_G see LSM6DS0_ACC_GYRO_YEN_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t *value)
 {
    
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG4, (u8_t *)value, 1) )
@@ -2315,7 +2315,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t *va
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t newValue)
 {
   u8_t value;
 
@@ -2338,7 +2338,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t ne
 * Output         : Status of ZEN_G see LSM6DS0_ACC_GYRO_ZEN_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG4, (u8_t *)value, 1) )
@@ -2356,7 +2356,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t *va
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_XL_t newValue)
 {
   u8_t value;
 
@@ -2379,7 +2379,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_X
 * Output         : Status of XEN_XL see LSM6DS0_ACC_GYRO_XEN_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_XL_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG5_XL, (u8_t *)value, 1) )
@@ -2397,7 +2397,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XE
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_XL_t newValue)
 {
   u8_t value;
   
@@ -2420,7 +2420,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_Y
 * Output         : Status of YEN_XL see LSM6DS0_ACC_GYRO_YEN_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_XL_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG5_XL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2437,7 +2437,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YE
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_XL_t newValue)
 {
   u8_t value;
 
@@ -2460,7 +2460,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_Z
 * Output         : Status of ZEN_XL see LSM6DS0_ACC_GYRO_ZEN_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_XL_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG5_XL, (u8_t *)value, 1) )
@@ -2478,7 +2478,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZE
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataDecimation(void *handle, LSM6DS0_ACC_GYRO_DEC_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataDecimation(void *handle, LSM6DS0_ACC_GYRO_DEC_XL_t newValue)
 {
   u8_t value;
  
@@ -2501,7 +2501,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataDecimation(void *handle, LSM6DS0_A
 * Output         : Status of DEC_XL see LSM6DS0_ACC_GYRO_DEC_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataDecimation(void *handle, LSM6DS0_ACC_GYRO_DEC_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataDecimation(void *handle, LSM6DS0_ACC_GYRO_DEC_XL_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG5_XL, (u8_t *)value, 1) )
@@ -2519,7 +2519,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataDecimation(void *handle, LSM6DS0_AC
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilterBandwidth(void *handle, LSM6DS0_ACC_GYRO_BW_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilterBandwidth(void *handle, LSM6DS0_ACC_GYRO_BW_XL_t newValue)
 {
   u8_t value;
 
@@ -2542,7 +2542,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilterBandwidth(void *handle, LSM6DS0_
 * Output         : Status of BW_XL see LSM6DS0_ACC_GYRO_BW_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilterBandwidth(void *handle, LSM6DS0_ACC_GYRO_BW_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilterBandwidth(void *handle, LSM6DS0_ACC_GYRO_BW_XL_t *value)
 {
   
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG6_XL, (u8_t *)value, 1) )
@@ -2560,7 +2560,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilterBandwidth(void *handle, LSM6DS0_A
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerBandWitdthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerBandWitdthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t newValue)
 {
   u8_t value;
   
@@ -2583,7 +2583,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerBandWitdthSelection(void *handle, LSM6
 * Output         : Status of BW_SCAL_ODR see LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerBandWitdthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerBandWitdthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t *value)
 {
   
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG6_XL, (u8_t *)value, 1) )
@@ -2601,7 +2601,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerBandWitdthSelection(void *handle, LSM6D
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighPass_on_Interrupt(void *handle, LSM6DS0_ACC_GYRO_HPIS_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighPass_on_Interrupt(void *handle, LSM6DS0_ACC_GYRO_HPIS_t newValue)
 {
   u8_t value;
  
@@ -2624,7 +2624,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighPass_on_Interrupt(void *handle, LS
 * Output         : Status of HPIS see LSM6DS0_ACC_GYRO_HPIS_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighPass_on_Interrupt(void *handle, LSM6DS0_ACC_GYRO_HPIS_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighPass_on_Interrupt(void *handle, LSM6DS0_ACC_GYRO_HPIS_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG7_XL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2641,7 +2641,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighPass_on_Interrupt(void *handle, LSM
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilteredDataSelection(void *handle, LSM6DS0_ACC_GYRO_FDS_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilteredDataSelection(void *handle, LSM6DS0_ACC_GYRO_FDS_t newValue)
 {
   u8_t value;
 
@@ -2664,7 +2664,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilteredDataSelection(void *handle, LS
 * Output         : Status of FDS see LSM6DS0_ACC_GYRO_FDS_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilteredDataSelection(void *handle, LSM6DS0_ACC_GYRO_FDS_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilteredDataSelection(void *handle, LSM6DS0_ACC_GYRO_FDS_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG7_XL, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2681,7 +2681,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilteredDataSelection(void *handle, LSM
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC_GYRO_DCF_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC_GYRO_DCF_t newValue)
 {
   u8_t value;
  
@@ -2704,7 +2704,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerCutOff_filter(void *handle, LSM6DS0_AC
 * Output         : Status of DCF see LSM6DS0_ACC_GYRO_DCF_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC_GYRO_DCF_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC_GYRO_DCF_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG7_XL, (u8_t *)value, 1) )
@@ -2722,7 +2722,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighResolutionMode(void *handle, LSM6DS0_ACC_GYRO_HR_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighResolutionMode(void *handle, LSM6DS0_ACC_GYRO_HR_t newValue)
 {
   u8_t value;
 
@@ -2745,7 +2745,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighResolutionMode(void *handle, LSM6D
 * Output         : Status of HR see LSM6DS0_ACC_GYRO_HR_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighResolutionMode(void *handle, LSM6DS0_ACC_GYRO_HR_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighResolutionMode(void *handle, LSM6DS0_ACC_GYRO_HR_t *value)
 {
   
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG7_XL, (u8_t *)value, 1) )
@@ -2763,7 +2763,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighResolutionMode(void *handle, LSM6DS
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t newValue)
 {
   u8_t value;
  
@@ -2786,7 +2786,7 @@ status_t  LSM6DS0_ACC_GYRO_W_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t n
 * Output         : Status of SW_RESET see LSM6DS0_ACC_GYRO_SW_RESET_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG8, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2803,7 +2803,7 @@ status_t LSM6DS0_ACC_GYRO_R_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t *v
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_BigLittleEndianDataSelection(void *handle, LSM6DS0_ACC_GYRO_BLE_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_BigLittleEndianDataSelection(void *handle, LSM6DS0_ACC_GYRO_BLE_t newValue)
 {
   u8_t value;
 
@@ -2826,7 +2826,7 @@ status_t  LSM6DS0_ACC_GYRO_W_BigLittleEndianDataSelection(void *handle, LSM6DS0_
 * Output         : Status of BLE see LSM6DS0_ACC_GYRO_BLE_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_BigLittleEndianDataSelection(void *handle, LSM6DS0_ACC_GYRO_BLE_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_BigLittleEndianDataSelection(void *handle, LSM6DS0_ACC_GYRO_BLE_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG8, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2843,7 +2843,7 @@ status_t LSM6DS0_ACC_GYRO_R_BigLittleEndianDataSelection(void *handle, LSM6DS0_A
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYRO_IF_ADD_INC_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYRO_IF_ADD_INC_t newValue)
 {
   u8_t value;
  
@@ -2867,7 +2867,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GY
 * Output         : Status of IF_ADD_INC see LSM6DS0_ACC_GYRO_IF_ADD_INC_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYRO_IF_ADD_INC_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYRO_IF_ADD_INC_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG8, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2884,7 +2884,7 @@ status_t LSM6DS0_ACC_GYRO_R_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYR
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GYRO_SIM_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GYRO_SIM_t newValue)
 {
   u8_t value;
  
@@ -2907,7 +2907,7 @@ status_t  LSM6DS0_ACC_GYRO_W_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_G
 * Output         : Status of SIM see LSM6DS0_ACC_GYRO_SIM_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GYRO_SIM_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GYRO_SIM_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG8, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -2924,7 +2924,7 @@ status_t LSM6DS0_ACC_GYRO_R_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GY
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t newValue)
 {
   u8_t value;
  
@@ -2947,7 +2947,7 @@ status_t  LSM6DS0_ACC_GYRO_W_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t
 * Output         : Status of PP_OD see LSM6DS0_ACC_GYRO_PP_OD_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t *value)
 {
    
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG8, (u8_t *)value, 1) )
@@ -2965,7 +2965,7 @@ status_t LSM6DS0_ACC_GYRO_R_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t 
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LACTIVE_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LACTIVE_t newValue)
 {
   u8_t value;
  
@@ -2988,7 +2988,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LA
 * Output         : Status of H_LACTIVE see LSM6DS0_ACC_GYRO_H_LACTIVE_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LACTIVE_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LACTIVE_t *value)
 {
   
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG8, (u8_t *)value, 1) )
@@ -3006,7 +3006,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LAC
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t newValue)
 {
   u8_t value;
 
@@ -3029,7 +3029,7 @@ status_t  LSM6DS0_ACC_GYRO_W_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t newVal
 * Output         : Status of BOOT see LSM6DS0_ACC_GYRO_BOOT_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG8, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -3046,7 +3046,7 @@ status_t LSM6DS0_ACC_GYRO_R_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t *value)
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_STOP_ON_FTH_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_STOP_ON_FTH_t newValue)
 {
   u8_t value;
 
@@ -3069,7 +3069,7 @@ status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO
 * Output         : Status of STOP_ON_FTH see LSM6DS0_ACC_GYRO_STOP_ON_FTH_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_STOP_ON_FTH_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_STOP_ON_FTH_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG9, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -3086,7 +3086,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t newValue)
 {
   u8_t value;
   
@@ -3109,7 +3109,7 @@ status_t  LSM6DS0_ACC_GYRO_W_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t newVa
 * Output         : Status of FIFO_EN see LSM6DS0_ACC_GYRO_FIFO_EN_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t *value)
 {
    if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG9, (u8_t *)value, 1) )
       return MEMS_ERROR;
@@ -3126,7 +3126,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t *value
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_DISABLE_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_DISABLE_t newValue)
 {
   u8_t value;
  
@@ -3149,7 +3149,7 @@ status_t  LSM6DS0_ACC_GYRO_W_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C
 * Output         : Status of I2C_DISABLE see LSM6DS0_ACC_GYRO_I2C_DISABLE_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_DISABLE_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_DISABLE_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG9, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3166,7 +3166,7 @@ status_t LSM6DS0_ACC_GYRO_R_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t newValue)
 {
   u8_t value;
 
@@ -3189,7 +3189,7 @@ status_t  LSM6DS0_ACC_GYRO_W_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_
 * Output         : Status of DRDY_MASK_BIT see LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG9, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3206,7 +3206,7 @@ status_t LSM6DS0_ACC_GYRO_R_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_M
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t newValue)
 {
   u8_t value;
  
@@ -3230,7 +3230,7 @@ status_t  LSM6DS0_ACC_GYRO_W_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_
 * Output         : Status of FIFO_TEMP_EN see LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG9, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3247,7 +3247,7 @@ status_t LSM6DS0_ACC_GYRO_R_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_F
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G_t newValue)
 {
   u8_t value;
  
@@ -3270,7 +3270,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_
 * Output         : Status of SLEEP_G see LSM6DS0_ACC_GYRO_SLEEP_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G_t *value)
 {
  
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG9, (u8_t *)value, 1) )
@@ -3288,7 +3288,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_XL_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_XL_t newValue)
 {
   u8_t value;
  
@@ -3311,7 +3311,7 @@ status_t  LSM6DS0_ACC_GYRO_W_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYR
 * Output         : Status of ST_XL see LSM6DS0_ACC_GYRO_ST_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_XL_t *value)
 {
 
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG10, (u8_t *)value, 1) )
@@ -3329,7 +3329,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t newValue)
 {
   u8_t value;
 
@@ -3352,7 +3352,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t 
 * Output         : Status of ST_G see LSM6DS0_ACC_GYRO_ST_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_CTRL_REG10, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3369,7 +3369,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t *
 * Output         : Status of XL_XL see LSM6DS0_ACC_GYRO_XL_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_X(void *handle, LSM6DS0_ACC_GYRO_XL_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_X(void *handle, LSM6DS0_ACC_GYRO_XL_XL_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_XL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3386,7 +3386,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_X(void *handle, LSM6D
 * Output         : Status of XH_XL see LSM6DS0_ACC_GYRO_XH_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_X(void *handle, LSM6DS0_ACC_GYRO_XH_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_X(void *handle, LSM6DS0_ACC_GYRO_XH_XL_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_XL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3403,7 +3403,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_X(void *handle, LSM6
 * Output         : Status of YL_XL see LSM6DS0_ACC_GYRO_YL_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Y(void *handle, LSM6DS0_ACC_GYRO_YL_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Y(void *handle, LSM6DS0_ACC_GYRO_YL_XL_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_XL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3420,7 +3420,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Y(void *handle, LSM6D
 * Output         : Status of YH_XL see LSM6DS0_ACC_GYRO_YH_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Y(void *handle, LSM6DS0_ACC_GYRO_YH_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Y(void *handle, LSM6DS0_ACC_GYRO_YH_XL_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_XL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3437,7 +3437,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Y(void *handle, LSM6
 * Output         : Status of ZL_XL see LSM6DS0_ACC_GYRO_ZL_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Z(void *handle, LSM6DS0_ACC_GYRO_ZL_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Z(void *handle, LSM6DS0_ACC_GYRO_ZL_XL_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_XL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3454,7 +3454,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Z(void *handle, LSM6D
 * Output         : Status of ZH_XL see LSM6DS0_ACC_GYRO_ZH_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Z(void *handle, LSM6DS0_ACC_GYRO_ZH_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Z(void *handle, LSM6DS0_ACC_GYRO_ZH_XL_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_XL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3471,7 +3471,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Z(void *handle, LSM6
 * Output         : Status of IA_XL see LSM6DS0_ACC_GYRO_IA_XL_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IA_XL_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IA_XL_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_SRC_XL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3488,7 +3488,7 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag(void *handle, LSM6DS0_ACC
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold(void *handle, u8_t newValue)
 {
   u8_t value;
 
@@ -3514,7 +3514,7 @@ status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold(void *handle, u8_t newValue)
 * Output         : Status of FTH 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold(void *handle, u8_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_FIFO_CTRL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3532,7 +3532,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold(void *handle, u8_t *value)
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t newValue)
 {
   u8_t value;
 
@@ -3555,7 +3555,7 @@ status_t  LSM6DS0_ACC_GYRO_W_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t ne
 * Output         : Status of FMODE see LSM6DS0_ACC_GYRO_FMODE_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_FIFO_CTRL, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3572,7 +3572,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t *va
 * Output         : Status of FSS 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Samples(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Samples(void *handle, u8_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_FIFO_SRC, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3590,7 +3590,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_Samples(void *handle, u8_t *value)
 * Output         : Status of OVRN see LSM6DS0_ACC_GYRO_OVRN_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO_OverrunFlag(void *handle, LSM6DS0_ACC_GYRO_OVRN_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_OverrunFlag(void *handle, LSM6DS0_ACC_GYRO_OVRN_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_FIFO_SRC, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3607,7 +3607,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_OverrunFlag(void *handle, LSM6DS0_ACC_GYRO_OVRN
 * Output         : Status of FTH see LSM6DS0_ACC_GYRO_FTH_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_FIFO_ThresholdFlag(void *handle, LSM6DS0_ACC_GYRO_FTH_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_ThresholdFlag(void *handle, LSM6DS0_ACC_GYRO_FTH_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_FIFO_SRC, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3624,7 +3624,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_ThresholdFlag(void *handle, LSM6DS0_ACC_GYRO_FT
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_G_t newValue)
 {
   u8_t value;
 
@@ -3647,7 +3647,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_G
 * Output         : Status of XLIE_G see LSM6DS0_ACC_GYRO_XLIE_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3664,7 +3664,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GY
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_G_t newValue)
 {
   u8_t value;
 
@@ -3687,7 +3687,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_
 * Output         : Status of XHIE_G see LSM6DS0_ACC_GYRO_XHIE_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3704,7 +3704,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_G
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_G_t newValue)
 {
   u8_t value;
 
@@ -3727,7 +3727,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_G
 * Output         : Status of YLIE_G see LSM6DS0_ACC_GYRO_YLIE_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3744,7 +3744,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GY
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_G_t newValue)
 {
   u8_t value;
 
@@ -3767,7 +3767,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_
 * Output         : Status of YHIE_G see LSM6DS0_ACC_GYRO_YHIE_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3784,7 +3784,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_G
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_G_t newValue)
 {
   u8_t value;
 
@@ -3807,7 +3807,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_G
 * Output         : Status of ZLIE_G see LSM6DS0_ACC_GYRO_ZLIE_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3824,7 +3824,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GY
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_G_t newValue)
 {
   u8_t value;
 
@@ -3847,7 +3847,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_
 * Output         : Status of ZHIE_G see LSM6DS0_ACC_GYRO_ZHIE_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3864,7 +3864,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_G
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GYRO_LIR_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GYRO_LIR_G_t newValue)
 {
   u8_t value;
 
@@ -3887,7 +3887,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_G
 * Output         : Status of LIR_G see LSM6DS0_ACC_GYRO_LIR_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GYRO_LIR_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GYRO_LIR_G_t *value)
 {
 
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_G, (u8_t *)value, 1) )
@@ -3905,7 +3905,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GY
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptCombinationEvent(void *handle, LSM6DS0_ACC_GYRO_AOI_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptCombinationEvent(void *handle, LSM6DS0_ACC_GYRO_AOI_G_t newValue)
 {
   u8_t value;
 
@@ -3928,7 +3928,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptCombinationEvent(void *handle, LSM6DS0
 * Output         : Status of AOI_G see LSM6DS0_ACC_GYRO_AOI_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroInterruptCombinationEvent(void *handle, LSM6DS0_ACC_GYRO_AOI_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterruptCombinationEvent(void *handle, LSM6DS0_ACC_GYRO_AOI_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_CFG_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3945,7 +3945,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInterruptCombinationEvent(void *handle, LSM6DS0_
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_GYRO_DCRM_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_GYRO_DCRM_G_t newValue)
 {
   u8_t value;
 
@@ -3968,7 +3968,7 @@ status_t  LSM6DS0_ACC_GYRO_W_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_
 * Output         : Status of DCRM_G see LSM6DS0_ACC_GYRO_DCRM_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_GYRO_DCRM_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_GYRO_DCRM_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_THS_XH_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -3985,7 +3985,7 @@ status_t LSM6DS0_ACC_GYRO_R_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_G
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_InterruptDurationValue(void *handle, u8_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptDurationValue(void *handle, u8_t newValue)
 {
   u8_t value;
 
@@ -4011,7 +4011,7 @@ status_t  LSM6DS0_ACC_GYRO_W_InterruptDurationValue(void *handle, u8_t newValue)
 * Output         : Status of DUR_G 
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_InterruptDurationValue(void *handle, u8_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptDurationValue(void *handle, u8_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_DUR_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -4029,7 +4029,7 @@ status_t LSM6DS0_ACC_GYRO_R_InterruptDurationValue(void *handle, u8_t *value)
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t  LSM6DS0_ACC_GYRO_W_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t newValue)
+mems_status_t  LSM6DS0_ACC_GYRO_W_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t newValue)
 {
   u8_t value;
 
@@ -4052,7 +4052,7 @@ status_t  LSM6DS0_ACC_GYRO_W_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_
 * Output         : Status of WAIT_G see LSM6DS0_ACC_GYRO_WAIT_G_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_R_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t *value)
+mems_status_t LSM6DS0_ACC_GYRO_R_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t *value)
 {
  if( !LSM6DS0_ACC_GYRO_ReadReg(handle, LSM6DS0_ACC_GYRO_INT_GEN_DUR_G, (u8_t *)value, 1) )
     return MEMS_ERROR;
@@ -4063,13 +4063,13 @@ status_t LSM6DS0_ACC_GYRO_R_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t
  }
 
 /*******************************************************************************
-* Function Name  : status_t LSM6DS0_ACC_GYRO_Get_Temperature(u8_t *buff)
+* Function Name  : mems_status_t LSM6DS0_ACC_GYRO_Get_Temperature(u8_t *buff)
 * Description    : Read Temperature output register
 * Input          : pointer to [u8_t]
 * Output         : Temperature buffer u8_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Get_Temperature(void *handle, u8_t *buff) 
+mems_status_t LSM6DS0_ACC_GYRO_Get_Temperature(void *handle, u8_t *buff) 
 {
   u8_t i, j, k;
   u8_t numberOfByteForDimension;
@@ -4091,13 +4091,13 @@ status_t LSM6DS0_ACC_GYRO_Get_Temperature(void *handle, u8_t *buff)
  }
 
 /*******************************************************************************
-* Function Name  : status_t LSM6DS0_ACC_GYRO_Set_AngularRateThreshold(u8_t *buff) 
+* Function Name  : mems_status_t LSM6DS0_ACC_GYRO_Set_AngularRateThreshold(u8_t *buff) 
 * Description    : Set AngularRateThreshold data row
 * Input          : pointer to [u8_t]
 * Output         : None
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Set_AngularRateThreshold(void *handle, u8_t *buff) 
+mems_status_t LSM6DS0_ACC_GYRO_Set_AngularRateThreshold(void *handle, u8_t *buff) 
 {
   u8_t  i, value;
   u8_t numberOfByteForDimension;
@@ -4125,13 +4125,13 @@ status_t LSM6DS0_ACC_GYRO_Set_AngularRateThreshold(void *handle, u8_t *buff)
 }
 
 /*******************************************************************************
-* Function Name  : status_t LSM6DS0_ACC_GYRO_Get_AngularRateThreshold(u8_t *buff)
+* Function Name  : mems_status_t LSM6DS0_ACC_GYRO_Get_AngularRateThreshold(u8_t *buff)
 * Description    : Read AngularRateThreshold output register
 * Input          : pointer to [u8_t]
 * Output         : AngularRateThreshold buffer u8_t
 * Return         : Status [MEMS_ERROR, MEMS_SUCCESS]
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Get_AngularRateThreshold(void *handle, u8_t *buff) 
+mems_status_t LSM6DS0_ACC_GYRO_Get_AngularRateThreshold(void *handle, u8_t *buff) 
 {
   u8_t i, j, k;
   u8_t numberOfByteForDimension;
