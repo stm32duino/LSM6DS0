@@ -85,7 +85,7 @@ typedef union{
 typedef enum {
   MEMS_SUCCESS				=		0x01,
   MEMS_ERROR				=		0x00	
-} status_t;
+} mems_status_t;
 
 #endif /*__SHARED__TYPES*/
 
@@ -161,7 +161,7 @@ typedef enum {
 * Bit Group Name: None
 * Permission    : W
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_WriteReg( void *handle, u8_t Reg, u8_t *Bufp, u16_t len );
+mems_status_t LSM6DS0_ACC_GYRO_WriteReg( void *handle, u8_t Reg, u8_t *Bufp, u16_t len );
 
 /*******************************************************************************
 * Register      : Generic - All
@@ -169,7 +169,7 @@ status_t LSM6DS0_ACC_GYRO_WriteReg( void *handle, u8_t Reg, u8_t *Bufp, u16_t le
 * Bit Group Name: None
 * Permission    : R
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_ReadReg( void *handle, u8_t Reg, u8_t *Bufp, u16_t len );
+mems_status_t LSM6DS0_ACC_GYRO_ReadReg( void *handle, u8_t Reg, u8_t *Bufp, u16_t len );
 
 /**************** Base Function  *******************/
 
@@ -181,7 +181,7 @@ status_t LSM6DS0_ACC_GYRO_ReadReg( void *handle, u8_t Reg, u8_t *Bufp, u16_t len
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_WHO_AM_I_BIT_MASK  	0xFF
 #define  	LSM6DS0_ACC_GYRO_WHO_AM_I_BIT_POSITION  	0
-status_t LSM6DS0_ACC_GYRO_R_WHO_AM_I_(void *handle, u8_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_WHO_AM_I_(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG1_G
@@ -197,8 +197,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_FS_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_FS_G_MASK  	0x18
-status_t  LSM6DS0_ACC_GYRO_W_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG1_G
@@ -217,8 +217,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ODR_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_ODR_G_MASK  	0xE0
-status_t  LSM6DS0_ACC_GYRO_W_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG6_XL
@@ -234,8 +234,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_FS_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_FS_XL_MASK  	0x18
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerFullScale(void *handle, LSM6DS0_ACC_GYRO_FS_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG6_XL
@@ -254,8 +254,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ODR_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_ODR_XL_MASK  	0xE0
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataRate(void *handle, LSM6DS0_ACC_GYRO_ODR_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG8
@@ -269,21 +269,21 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_BDU_t;
 
 #define  	LSM6DS0_ACC_GYRO_BDU_MASK  	0x40
-status_t  LSM6DS0_ACC_GYRO_W_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_BlockDataUpdate(void *handle, LSM6DS0_ACC_GYRO_BDU_t *value);
 
 /*******************************************************************************
 * Register      : <REGISTER_L> - <REGISTER_H>
 * Output Type   : AngularRate
 * Permission    : RO 
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Get_AngularRate(void *handle, u8_t *buff); 
+mems_status_t LSM6DS0_ACC_GYRO_Get_AngularRate(void *handle, u8_t *buff); 
 /*******************************************************************************
 * Register      : <REGISTER_L> - <REGISTER_H>
 * Output Type   : Acceleration
 * Permission    : RO 
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Get_Acceleration(void *handle, u8_t *buff); 
+mems_status_t LSM6DS0_ACC_GYRO_Get_Acceleration(void *handle, u8_t *buff); 
 
 /**************** Advanced Function  *******************/
 
@@ -295,8 +295,8 @@ status_t LSM6DS0_ACC_GYRO_Get_Acceleration(void *handle, u8_t *buff);
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_ACT_THS_MASK  	0x7F
 #define  	LSM6DS0_ACC_GYRO_ACT_THS_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityThreshold(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInactivityThreshold(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityThreshold(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInactivityThreshold(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : ACT_THS
@@ -310,8 +310,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t;
 
 #define  	LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_ON_INACT_EN_t *value);
 
 /*******************************************************************************
 * Register      : ACT_DUR
@@ -321,8 +321,8 @@ status_t LSM6DS0_ACC_GYRO_R_GyroInactivityMode(void *handle, LSM6DS0_ACC_GYRO_SL
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_ACT_DUR_MASK  	0xFF
 #define  	LSM6DS0_ACC_GYRO_ACT_DUR_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityDuration(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInactivityDuration(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInactivityDuration(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInactivityDuration(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_XL
@@ -336,8 +336,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XLIE_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_XLIE_XL_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_XL
@@ -351,8 +351,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XHIE_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_XHIE_XL_MASK  	0x02
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_XL
@@ -366,8 +366,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YLIE_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_YLIE_XL_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_XL
@@ -381,8 +381,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YHIE_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_YHIE_XL_MASK  	0x08
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_XL
@@ -396,8 +396,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZLIE_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZLIE_XL_MASK  	0x10
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_XL
@@ -411,8 +411,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZHIE_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZHIE_XL_MASK  	0x20
-status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptAccelerometer_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometer_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_XL
@@ -426,8 +426,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_6D_t;
 
 #define  	LSM6DS0_ACC_GYRO_6D_MASK  	0x40
-status_t  LSM6DS0_ACC_GYRO_W_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_Interrupt6D(void *handle, LSM6DS0_ACC_GYRO_6D_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_XL
@@ -441,8 +441,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_AOI_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_AOI_XL_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerInterruptCombination(void *handle, LSM6DS0_ACC_GYRO_AOI_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptCombination(void *handle, LSM6DS0_ACC_GYRO_AOI_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerInterruptCombination(void *handle, LSM6DS0_ACC_GYRO_AOI_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptCombination(void *handle, LSM6DS0_ACC_GYRO_AOI_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_THS_X_XL
@@ -452,8 +452,8 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptCombination(void *handle, LSM6
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_THS_XL_X_MASK  	0xFF
 #define  	LSM6DS0_ACC_GYRO_THS_XL_X_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisX(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisX(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisX(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisX(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_THS_Y_XL
@@ -463,8 +463,8 @@ status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisX(void *handle, u8_t *value
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_THS_XL_Y_MASK  	0xFF
 #define  	LSM6DS0_ACC_GYRO_THS_XL_Y_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisY(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisY(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisY(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisY(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_THS_Z_XL
@@ -474,8 +474,8 @@ status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisY(void *handle, u8_t *value
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_THS_XL_Z_MASK  	0xFF
 #define  	LSM6DS0_ACC_GYRO_THS_XL_Z_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisZ(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisZ(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptThresholdAxisZ(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisZ(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_DUR_XL
@@ -485,8 +485,8 @@ status_t LSM6DS0_ACC_GYRO_R_XL_InterruptThresholdAxisZ(void *handle, u8_t *value
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_DUR_XL_MASK  	0x7F
 #define  	LSM6DS0_ACC_GYRO_DUR_XL_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptDuration(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_XL_InterruptDuration(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_InterruptDuration(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_InterruptDuration(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_DUR_XL
@@ -500,8 +500,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_WAIT_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_WAIT_XL_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_XL_t *value);
 
 /*******************************************************************************
 * Register      : REFERENCE_G
@@ -511,8 +511,8 @@ status_t LSM6DS0_ACC_GYRO_R_XL_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_REF_G_MASK  	0xFF
 #define  	LSM6DS0_ACC_GYRO_REF_G_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterReference(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterReference(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterReference(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterReference(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : INT_CTRL
@@ -526,8 +526,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT_DRDY_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT_DRDY_XL_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_XL_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_CTRL
@@ -541,8 +541,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT_DRDY_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT_DRDY_G_MASK  	0x02
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_DataReadyOnINT(void *handle, LSM6DS0_ACC_GYRO_INT_DRDY_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_CTRL
@@ -556,8 +556,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT__BOOT_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT__BOOT_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_BOOT_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT__BOOT_t *value);
 
 /*******************************************************************************
 * Register      : INT_CTRL
@@ -571,8 +571,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT_FTH_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT_FTH_MASK  	0x08
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FTH_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FTH_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FTH_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FTH_t *value);
 
 /*******************************************************************************
 * Register      : INT_CTRL
@@ -586,8 +586,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT_OVR_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT_OVR_MASK  	0x10
-status_t  LSM6DS0_ACC_GYRO_W_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_Overrun_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_OVR_t *value);
 
 /*******************************************************************************
 * Register      : INT_CTRL
@@ -601,8 +601,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT_FSS5_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT_FSS5_MASK  	0x20
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FSS5_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FSS5_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FSS5_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Full_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_FSS5_t *value);
 
 /*******************************************************************************
 * Register      : INT_CTRL
@@ -616,8 +616,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT_IG_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT_IG_XL_MASK  	0x40
-status_t  LSM6DS0_ACC_GYRO_W_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_Accelerometer_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_CTRL
@@ -631,8 +631,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT_IG_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT_IG_G_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_Gyroscope_OnINT(void *handle, LSM6DS0_ACC_GYRO_INT_IG_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG1_G
@@ -648,8 +648,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_BW_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_BW_G_MASK  	0x03
-status_t  LSM6DS0_ACC_GYRO_W_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroBandwidthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG2_G
@@ -664,8 +664,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_OUT_SEL_t;
 
 #define  	LSM6DS0_ACC_GYRO_OUT_SEL_MASK  	0x03
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_OutMode(void *handle, LSM6DS0_ACC_GYRO_OUT_SEL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG2_G
@@ -680,8 +680,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INT_SEL_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_INT_SEL_G_MASK  	0x0C
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_SEL_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_SEL_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_SEL_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_SEL_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG3_G
@@ -691,8 +691,8 @@ status_t LSM6DS0_ACC_GYRO_R_GYRO_OutIntMode(void *handle, LSM6DS0_ACC_GYRO_INT_S
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_HPCF_G_MASK  	0x0F
 #define  	LSM6DS0_ACC_GYRO_HPCF_G_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterCutOffFrequency(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterCutOffFrequency(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilterCutOffFrequency(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilterCutOffFrequency(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG3_G
@@ -706,8 +706,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_HP_EN_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_HP_EN_G_MASK  	0x40
-status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP_EN_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP_EN_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP_EN_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroHighPassFilter(void *handle, LSM6DS0_ACC_GYRO_HP_EN_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG3_G
@@ -721,8 +721,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_LP_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_LP_G_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroLowPower(void *handle, LSM6DS0_ACC_GYRO_LP_G_t *value);
 
 /*******************************************************************************
 * Register      : ORIENT_CFG_G
@@ -736,8 +736,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ORIENT_0_t;
 
 #define  	LSM6DS0_ACC_GYRO_ORIENT_0_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationX(void *handle, LSM6DS0_ACC_GYRO_ORIENT_0_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationX(void *handle, LSM6DS0_ACC_GYRO_ORIENT_0_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationX(void *handle, LSM6DS0_ACC_GYRO_ORIENT_0_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationX(void *handle, LSM6DS0_ACC_GYRO_ORIENT_0_t *value);
 
 /*******************************************************************************
 * Register      : ORIENT_CFG_G
@@ -751,8 +751,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ORIENT_1_t;
 
 #define  	LSM6DS0_ACC_GYRO_ORIENT_1_MASK  	0x02
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationY(void *handle, LSM6DS0_ACC_GYRO_ORIENT_1_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationY(void *handle, LSM6DS0_ACC_GYRO_ORIENT_1_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationY(void *handle, LSM6DS0_ACC_GYRO_ORIENT_1_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationY(void *handle, LSM6DS0_ACC_GYRO_ORIENT_1_t *value);
 
 /*******************************************************************************
 * Register      : ORIENT_CFG_G
@@ -766,8 +766,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ORIENT_2_t;
 
 #define  	LSM6DS0_ACC_GYRO_ORIENT_2_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationZ(void *handle, LSM6DS0_ACC_GYRO_ORIENT_2_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationZ(void *handle, LSM6DS0_ACC_GYRO_ORIENT_2_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_DirectionalUserOrientationZ(void *handle, LSM6DS0_ACC_GYRO_ORIENT_2_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_DirectionalUserOrientationZ(void *handle, LSM6DS0_ACC_GYRO_ORIENT_2_t *value);
 
 /*******************************************************************************
 * Register      : ORIENT_CFG_G
@@ -781,8 +781,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_SIGNZ_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_SIGNZ_G_MASK  	0x08
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_SignZ(void *handle, LSM6DS0_ACC_GYRO_SIGNZ_G_t *value);
 
 /*******************************************************************************
 * Register      : ORIENT_CFG_G
@@ -796,8 +796,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_SIGNY_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_SIGNY_G_MASK  	0x10
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_SignY(void *handle, LSM6DS0_ACC_GYRO_SIGNY_G_t *value);
 
 /*******************************************************************************
 * Register      : ORIENT_CFG_G
@@ -811,8 +811,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_SIGNX_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_SIGNX_G_MASK  	0x20
-status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GYRO_SignX(void *handle, LSM6DS0_ACC_GYRO_SIGNX_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_G
@@ -826,7 +826,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XL_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_XL_G_MASK  	0x01
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XL_G_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XL_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_G
@@ -840,7 +840,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XH_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_XH_G_MASK  	0x02
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XH_G_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XH_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_G
@@ -854,7 +854,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YL_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_YL_G_MASK  	0x04
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YL_G_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YL_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_G
@@ -868,7 +868,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YH_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_YH_G_MASK  	0x08
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YH_G_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YH_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_G
@@ -882,7 +882,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZL_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZL_G_MASK  	0x10
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZL_G_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZL_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_G
@@ -896,7 +896,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZH_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZH_G_MASK  	0x20
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZH_G_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZH_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_G
@@ -910,7 +910,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_IA_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_IA_G_MASK  	0x40
-status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag(void *handle, LSM6DS0_ACC_GYRO_IA_G_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptGyroFlag(void *handle, LSM6DS0_ACC_GYRO_IA_G_t *value);
 
 /*******************************************************************************
 * Register      : STATUS_REG
@@ -924,7 +924,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XLDA_t;
 
 #define  	LSM6DS0_ACC_GYRO_XLDA_MASK  	0x01
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_XLDA_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_XLDA_t *value);
 
 /*******************************************************************************
 * Register      : STATUS_REG
@@ -938,7 +938,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_GDA_t;
 
 #define  	LSM6DS0_ACC_GYRO_GDA_MASK  	0x02
-status_t LSM6DS0_ACC_GYRO_R_GyroDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_GDA_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_GDA_t *value);
 
 /*******************************************************************************
 * Register      : STATUS_REG
@@ -952,7 +952,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_TDA_t;
 
 #define  	LSM6DS0_ACC_GYRO_TDA_MASK  	0x04
-status_t LSM6DS0_ACC_GYRO_R_TemperatureDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_TDA_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_TemperatureDataReadyFlag(void *handle, LSM6DS0_ACC_GYRO_TDA_t *value);
 
 /*******************************************************************************
 * Register      : STATUS_REG
@@ -966,7 +966,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_BOOT_STATUS_t;
 
 #define  	LSM6DS0_ACC_GYRO_BOOT_STATUS_MASK  	0x08
-status_t LSM6DS0_ACC_GYRO_R_BootRunningFlag(void *handle, LSM6DS0_ACC_GYRO_BOOT_STATUS_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_BootRunningFlag(void *handle, LSM6DS0_ACC_GYRO_BOOT_STATUS_t *value);
 
 /*******************************************************************************
 * Register      : STATUS_REG
@@ -980,7 +980,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_INACT_t;
 
 #define  	LSM6DS0_ACC_GYRO_INACT_MASK  	0x10
-status_t LSM6DS0_ACC_GYRO_R_InactivityInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_INACT_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InactivityInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_INACT_t *value);
 
 /*******************************************************************************
 * Register      : STATUS_REG
@@ -994,7 +994,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_IG_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_IG_G_MASK  	0x20
-status_t LSM6DS0_ACC_GYRO_R_GyroInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IG_G_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IG_G_t *value);
 
 /*******************************************************************************
 * Register      : STATUS_REG
@@ -1008,7 +1008,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_IG_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_IG_XL_MASK  	0x40
-status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometerFlag(void *handle, LSM6DS0_ACC_GYRO_IG_XL_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptAccelerometerFlag(void *handle, LSM6DS0_ACC_GYRO_IG_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG4
@@ -1022,8 +1022,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_4D_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_4D_XL_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_Interrupt4D(void *handle, LSM6DS0_ACC_GYRO_4D_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG4
@@ -1037,8 +1037,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_LIR_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_LIR_XL_MASK  	0x02
-status_t  LSM6DS0_ACC_GYRO_W_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_LIR_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_LIR_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_LIR_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptSignalMode(void *handle, LSM6DS0_ACC_GYRO_LIR_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG4
@@ -1052,8 +1052,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XEN_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_XEN_G_MASK  	0x08
-status_t  LSM6DS0_ACC_GYRO_W_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG4
@@ -1067,8 +1067,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YEN_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_YEN_G_MASK  	0x10
-status_t  LSM6DS0_ACC_GYRO_W_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG4
@@ -1082,8 +1082,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZEN_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZEN_G_MASK  	0x20
-status_t  LSM6DS0_ACC_GYRO_W_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG5_XL
@@ -1097,8 +1097,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XEN_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_XEN_XL_MASK  	0x08
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisX(void *handle, LSM6DS0_ACC_GYRO_XEN_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG5_XL
@@ -1112,8 +1112,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YEN_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_YEN_XL_MASK  	0x10
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisY(void *handle, LSM6DS0_ACC_GYRO_YEN_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG5_XL
@@ -1127,8 +1127,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZEN_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZEN_XL_MASK  	0x20
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerAxisZ(void *handle, LSM6DS0_ACC_GYRO_ZEN_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG5_XL
@@ -1144,8 +1144,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_DEC_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_DEC_XL_MASK  	0xC0
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataDecimation(void *handle, LSM6DS0_ACC_GYRO_DEC_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataDecimation(void *handle, LSM6DS0_ACC_GYRO_DEC_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerDataDecimation(void *handle, LSM6DS0_ACC_GYRO_DEC_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerDataDecimation(void *handle, LSM6DS0_ACC_GYRO_DEC_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG6_XL
@@ -1161,8 +1161,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_BW_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_BW_XL_MASK  	0x03
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilterBandwidth(void *handle, LSM6DS0_ACC_GYRO_BW_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilterBandwidth(void *handle, LSM6DS0_ACC_GYRO_BW_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilterBandwidth(void *handle, LSM6DS0_ACC_GYRO_BW_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilterBandwidth(void *handle, LSM6DS0_ACC_GYRO_BW_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG6_XL
@@ -1176,8 +1176,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t;
 
 #define  	LSM6DS0_ACC_GYRO_BW_SCAL_ODR_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerBandWitdthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerBandWitdthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerBandWitdthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerBandWitdthSelection(void *handle, LSM6DS0_ACC_GYRO_BW_SCAL_ODR_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG7_XL
@@ -1191,8 +1191,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_HPIS_t;
 
 #define  	LSM6DS0_ACC_GYRO_HPIS_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighPass_on_Interrupt(void *handle, LSM6DS0_ACC_GYRO_HPIS_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighPass_on_Interrupt(void *handle, LSM6DS0_ACC_GYRO_HPIS_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighPass_on_Interrupt(void *handle, LSM6DS0_ACC_GYRO_HPIS_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighPass_on_Interrupt(void *handle, LSM6DS0_ACC_GYRO_HPIS_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG7_XL
@@ -1206,8 +1206,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_FDS_t;
 
 #define  	LSM6DS0_ACC_GYRO_FDS_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilteredDataSelection(void *handle, LSM6DS0_ACC_GYRO_FDS_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilteredDataSelection(void *handle, LSM6DS0_ACC_GYRO_FDS_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerFilteredDataSelection(void *handle, LSM6DS0_ACC_GYRO_FDS_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerFilteredDataSelection(void *handle, LSM6DS0_ACC_GYRO_FDS_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG7_XL
@@ -1223,8 +1223,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_DCF_t;
 
 #define  	LSM6DS0_ACC_GYRO_DCF_MASK  	0x60
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC_GYRO_DCF_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC_GYRO_DCF_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC_GYRO_DCF_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerCutOff_filter(void *handle, LSM6DS0_ACC_GYRO_DCF_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG7_XL
@@ -1238,8 +1238,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_HR_t;
 
 #define  	LSM6DS0_ACC_GYRO_HR_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighResolutionMode(void *handle, LSM6DS0_ACC_GYRO_HR_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighResolutionMode(void *handle, LSM6DS0_ACC_GYRO_HR_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerHighResolutionMode(void *handle, LSM6DS0_ACC_GYRO_HR_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerHighResolutionMode(void *handle, LSM6DS0_ACC_GYRO_HR_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG8
@@ -1253,8 +1253,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_SW_RESET_t;
 
 #define  	LSM6DS0_ACC_GYRO_SW_RESET_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_ResetSW(void *handle, LSM6DS0_ACC_GYRO_SW_RESET_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG8
@@ -1268,8 +1268,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_BLE_t;
 
 #define  	LSM6DS0_ACC_GYRO_BLE_MASK  	0x02
-status_t  LSM6DS0_ACC_GYRO_W_BigLittleEndianDataSelection(void *handle, LSM6DS0_ACC_GYRO_BLE_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_BigLittleEndianDataSelection(void *handle, LSM6DS0_ACC_GYRO_BLE_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_BigLittleEndianDataSelection(void *handle, LSM6DS0_ACC_GYRO_BLE_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_BigLittleEndianDataSelection(void *handle, LSM6DS0_ACC_GYRO_BLE_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG8
@@ -1283,8 +1283,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_IF_ADD_INC_t;
 
 #define  	LSM6DS0_ACC_GYRO_IF_ADD_INC_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYRO_IF_ADD_INC_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYRO_IF_ADD_INC_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYRO_IF_ADD_INC_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AutoIndexOnMultiAccess(void *handle, LSM6DS0_ACC_GYRO_IF_ADD_INC_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG8
@@ -1298,8 +1298,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_SIM_t;
 
 #define  	LSM6DS0_ACC_GYRO_SIM_MASK  	0x08
-status_t  LSM6DS0_ACC_GYRO_W_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GYRO_SIM_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GYRO_SIM_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GYRO_SIM_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_SPI_SerialInterfaceMode(void *handle, LSM6DS0_ACC_GYRO_SIM_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG8
@@ -1313,8 +1313,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_PP_OD_t;
 
 #define  	LSM6DS0_ACC_GYRO_PP_OD_MASK  	0x10
-status_t  LSM6DS0_ACC_GYRO_W_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_INT_Pin_Mode(void *handle, LSM6DS0_ACC_GYRO_PP_OD_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG8
@@ -1328,8 +1328,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_H_LACTIVE_t;
 
 #define  	LSM6DS0_ACC_GYRO_H_LACTIVE_MASK  	0x20
-status_t  LSM6DS0_ACC_GYRO_W_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LACTIVE_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LACTIVE_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LACTIVE_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptActive(void *handle, LSM6DS0_ACC_GYRO_H_LACTIVE_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG8
@@ -1343,8 +1343,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_BOOT_t;
 
 #define  	LSM6DS0_ACC_GYRO_BOOT_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_Reboot(void *handle, LSM6DS0_ACC_GYRO_BOOT_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG9
@@ -1358,8 +1358,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_STOP_ON_FTH_t;
 
 #define  	LSM6DS0_ACC_GYRO_STOP_ON_FTH_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_STOP_ON_FTH_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_STOP_ON_FTH_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_STOP_ON_FTH_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold_Level(void *handle, LSM6DS0_ACC_GYRO_STOP_ON_FTH_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG9
@@ -1373,8 +1373,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_FIFO_EN_t;
 
 #define  	LSM6DS0_ACC_GYRO_FIFO_EN_MASK  	0x02
-status_t  LSM6DS0_ACC_GYRO_W_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_EN_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG9
@@ -1388,8 +1388,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_I2C_DISABLE_t;
 
 #define  	LSM6DS0_ACC_GYRO_I2C_DISABLE_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_DISABLE_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_DISABLE_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_DISABLE_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_DigitalInterface(void *handle, LSM6DS0_ACC_GYRO_I2C_DISABLE_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG9
@@ -1403,8 +1403,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t;
 
 #define  	LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_MASK  	0x08
-status_t  LSM6DS0_ACC_GYRO_W_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_DataReadyTimer(void *handle, LSM6DS0_ACC_GYRO_DRDY_MASK_BIT_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG9
@@ -1418,8 +1418,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t;
 
 #define  	LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_MASK  	0x10
-status_t  LSM6DS0_ACC_GYRO_W_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_Temperature_In_FIFO(void *handle, LSM6DS0_ACC_GYRO_FIFO_TEMP_EN_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG9
@@ -1433,8 +1433,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_SLEEP_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_SLEEP_G_MASK  	0x40
-status_t  LSM6DS0_ACC_GYRO_W_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroSleepMode(void *handle, LSM6DS0_ACC_GYRO_SLEEP_G_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG10
@@ -1448,8 +1448,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ST_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_ST_XL_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_XL_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_XL_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_XL_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_XL_t *value);
 
 /*******************************************************************************
 * Register      : CTRL_REG10
@@ -1463,8 +1463,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ST_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_ST_G_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroSelfTest(void *handle, LSM6DS0_ACC_GYRO_ST_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_XL
@@ -1478,7 +1478,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XL_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_XL_XL_MASK  	0x01
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_X(void *handle, LSM6DS0_ACC_GYRO_XL_XL_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_X(void *handle, LSM6DS0_ACC_GYRO_XL_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_XL
@@ -1492,7 +1492,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XH_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_XH_XL_MASK  	0x02
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_X(void *handle, LSM6DS0_ACC_GYRO_XH_XL_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_X(void *handle, LSM6DS0_ACC_GYRO_XH_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_XL
@@ -1506,7 +1506,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YL_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_YL_XL_MASK  	0x04
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Y(void *handle, LSM6DS0_ACC_GYRO_YL_XL_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Y(void *handle, LSM6DS0_ACC_GYRO_YL_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_XL
@@ -1520,7 +1520,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YH_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_YH_XL_MASK  	0x08
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Y(void *handle, LSM6DS0_ACC_GYRO_YH_XL_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Y(void *handle, LSM6DS0_ACC_GYRO_YH_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_XL
@@ -1534,7 +1534,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZL_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZL_XL_MASK  	0x10
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Z(void *handle, LSM6DS0_ACC_GYRO_ZL_XL_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_Low_Z(void *handle, LSM6DS0_ACC_GYRO_ZL_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_XL
@@ -1548,7 +1548,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZH_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZH_XL_MASK  	0x20
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Z(void *handle, LSM6DS0_ACC_GYRO_ZH_XL_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag_High_Z(void *handle, LSM6DS0_ACC_GYRO_ZH_XL_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_SRC_XL
@@ -1562,7 +1562,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_IA_XL_t;
 
 #define  	LSM6DS0_ACC_GYRO_IA_XL_MASK  	0x40
-status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IA_XL_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag(void *handle, LSM6DS0_ACC_GYRO_IA_XL_t *value);
 
 
 /*******************************************************************************
@@ -1573,8 +1573,8 @@ status_t LSM6DS0_ACC_GYRO_R_AccelerometerInterruptFlag(void *handle, LSM6DS0_ACC
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_FTH_MASK  	0x1F
 #define  	LSM6DS0_ACC_GYRO_FTH_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Threshold(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Threshold(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : FIFO_CTRL
@@ -1591,8 +1591,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_FMODE_t;
 
 #define  	LSM6DS0_ACC_GYRO_FMODE_MASK  	0xE0
-status_t  LSM6DS0_ACC_GYRO_W_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t *value);
 
 /*******************************************************************************
 * Register      : FIFO_SRC
@@ -1602,7 +1602,7 @@ status_t LSM6DS0_ACC_GYRO_R_FIFO_Mode(void *handle, LSM6DS0_ACC_GYRO_FMODE_t *va
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_FSS_MASK  	0x3F
 #define  	LSM6DS0_ACC_GYRO_FSS_POSITION  	0
-status_t LSM6DS0_ACC_GYRO_R_FIFO_Samples(void *handle, u8_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_Samples(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : FIFO_SRC
@@ -1616,7 +1616,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_OVRN_t;
 
 #define  	LSM6DS0_ACC_GYRO_OVRN_MASK  	0x40
-status_t LSM6DS0_ACC_GYRO_R_FIFO_OverrunFlag(void *handle, LSM6DS0_ACC_GYRO_OVRN_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_OverrunFlag(void *handle, LSM6DS0_ACC_GYRO_OVRN_t *value);
 
 /*******************************************************************************
 * Register      : FIFO_SRC
@@ -1630,7 +1630,7 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_FTH_t;
 
 #define  	LSM6DS0_ACC_GYRO_FTH_FLAG_MASK  	0x80
-status_t LSM6DS0_ACC_GYRO_R_FIFO_ThresholdFlag(void *handle, LSM6DS0_ACC_GYRO_FTH_t *value);
+mems_status_t LSM6DS0_ACC_GYRO_R_FIFO_ThresholdFlag(void *handle, LSM6DS0_ACC_GYRO_FTH_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_G
@@ -1644,8 +1644,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XLIE_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_XLIE_G_MASK  	0x01
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisX(void *handle, LSM6DS0_ACC_GYRO_XLIE_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_G
@@ -1659,8 +1659,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_XHIE_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_XHIE_G_MASK  	0x02
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisX(void *handle, LSM6DS0_ACC_GYRO_XHIE_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_G
@@ -1674,8 +1674,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YLIE_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_YLIE_G_MASK  	0x04
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisY(void *handle, LSM6DS0_ACC_GYRO_YLIE_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_G
@@ -1689,8 +1689,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_YHIE_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_YHIE_G_MASK  	0x08
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisY(void *handle, LSM6DS0_ACC_GYRO_YHIE_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_G
@@ -1704,8 +1704,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZLIE_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZLIE_G_MASK  	0x10
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_Low_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZLIE_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_G
@@ -1719,8 +1719,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_ZHIE_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_ZHIE_G_MASK  	0x20
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterrupt_High_AxisZ(void *handle, LSM6DS0_ACC_GYRO_ZHIE_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_G
@@ -1734,8 +1734,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_LIR_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_LIR_G_MASK  	0x40
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GYRO_LIR_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GYRO_LIR_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GYRO_LIR_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterruptSignalType(void *handle, LSM6DS0_ACC_GYRO_LIR_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_CFG_G
@@ -1749,8 +1749,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_AOI_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_AOI_G_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptCombinationEvent(void *handle, LSM6DS0_ACC_GYRO_AOI_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroInterruptCombinationEvent(void *handle, LSM6DS0_ACC_GYRO_AOI_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroInterruptCombinationEvent(void *handle, LSM6DS0_ACC_GYRO_AOI_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroInterruptCombinationEvent(void *handle, LSM6DS0_ACC_GYRO_AOI_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_THS_XH_G
@@ -1764,8 +1764,8 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_DCRM_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_DCRM_G_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_GYRO_DCRM_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_GYRO_DCRM_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_GYRO_DCRM_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_GYRO_DCRM_G_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_DUR_G
@@ -1775,8 +1775,8 @@ status_t LSM6DS0_ACC_GYRO_R_GyroCounterModeSelection(void *handle, LSM6DS0_ACC_G
 *******************************************************************************/
 #define  	LSM6DS0_ACC_GYRO_DUR_G_MASK  	0x7F
 #define  	LSM6DS0_ACC_GYRO_DUR_G_POSITION  	0
-status_t  LSM6DS0_ACC_GYRO_W_InterruptDurationValue(void *handle, u8_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_InterruptDurationValue(void *handle, u8_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_InterruptDurationValue(void *handle, u8_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_InterruptDurationValue(void *handle, u8_t *value);
 
 /*******************************************************************************
 * Register      : INT_GEN_DUR_G
@@ -1790,21 +1790,21 @@ typedef enum {
 } LSM6DS0_ACC_GYRO_WAIT_G_t;
 
 #define  	LSM6DS0_ACC_GYRO_WAIT_G_MASK  	0x80
-status_t  LSM6DS0_ACC_GYRO_W_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t newValue);
-status_t LSM6DS0_ACC_GYRO_R_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t *value);
+mems_status_t  LSM6DS0_ACC_GYRO_W_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t newValue);
+mems_status_t LSM6DS0_ACC_GYRO_R_WaitFunction(void *handle, LSM6DS0_ACC_GYRO_WAIT_G_t *value);
 /*******************************************************************************
 * Register      : <REGISTER_L> - <REGISTER_H>
 * Output Type   : Temperature
 * Permission    : RO 
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Get_Temperature(void *handle, u8_t *buff); 
+mems_status_t LSM6DS0_ACC_GYRO_Get_Temperature(void *handle, u8_t *buff); 
 /*******************************************************************************
 * Register      : <REGISTER_L> - <REGISTER_H>
 * Output Type   : AngularRateThreshold
 * Permission    : RW 
 *******************************************************************************/
-status_t LSM6DS0_ACC_GYRO_Set_AngularRateThreshold(void *handle, u8_t *buff);
-status_t LSM6DS0_ACC_GYRO_Get_AngularRateThreshold(void *handle, u8_t *buff); 
+mems_status_t LSM6DS0_ACC_GYRO_Set_AngularRateThreshold(void *handle, u8_t *buff);
+mems_status_t LSM6DS0_ACC_GYRO_Get_AngularRateThreshold(void *handle, u8_t *buff); 
 
 /*******************************************************************************
 * Register      : Generic - All
