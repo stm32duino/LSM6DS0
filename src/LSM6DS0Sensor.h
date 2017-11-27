@@ -150,20 +150,20 @@ class LSM6DS0Sensor
 
   private:
     LSM6DS0StatusTypeDef Set_X_ODR_When_Enabled(float odr);
-	LSM6DS0StatusTypeDef Set_G_ODR_When_Enabled(float odr);
-	LSM6DS0StatusTypeDef Set_X_ODR_When_Disabled(float odr);
-	LSM6DS0StatusTypeDef Set_G_ODR_When_Disabled(float odr);
-	
-	/* Configuration */
-    uint8_t address;
+    LSM6DS0StatusTypeDef Set_G_ODR_When_Enabled(float odr);
+    LSM6DS0StatusTypeDef Set_X_ODR_When_Disabled(float odr);
+    LSM6DS0StatusTypeDef Set_G_ODR_When_Disabled(float odr);
 
     /* Helper classes. */
     TwoWire *dev_i2c;
-	
-	uint8_t X_isEnabled;
-	float X_Last_ODR;
-	uint8_t G_isEnabled;
-	float G_Last_ODR;
+
+    /* Configuration */
+    uint8_t address;
+
+    uint8_t X_isEnabled;
+    float X_Last_ODR;
+    uint8_t G_isEnabled;
+    float G_Last_ODR;
 };
 
 #ifdef __cplusplus
