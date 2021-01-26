@@ -40,169 +40,113 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include "Arduino.h"
-#include "Wire.h"
 #include "LSM6DS0Sensor.h"
 
 
 /* Class Implementation ------------------------------------------------------*/
-
-/** Constructor
- * @param i2c object of an helper class which handles the I2C peripheral
- * @param address the address of the component's instance
- */
-LSM6DS0Sensor::LSM6DS0Sensor(TwoWire *i2c) : dev_i2c(i2c)
-{
-  address = LSM6DS0_ACC_GYRO_I2C_ADDRESS_HIGH;
-
-  /* Enable BDU */
-  if ( LSM6DS0_ACC_GYRO_W_BlockDataUpdate( (void *)this, LSM6DS0_ACC_GYRO_BDU_ENABLE ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  /* Output data rate selection - power down. */
-  if ( LSM6DS0_ACC_GYRO_W_AccelerometerDataRate( (void *)this, LSM6DS0_ACC_GYRO_ODR_XL_POWER_DOWN ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  /* Full scale selection */
-  if ( Set_X_FS( 2.0f ) == LSM6DS0_STATUS_ERROR )
-  {
-    return;
-  }
-
-  /* Enable axes */
-  if ( LSM6DS0_ACC_GYRO_W_AccelerometerAxisX( (void *)this, LSM6DS0_ACC_GYRO_XEN_XL_ENABLE ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  if ( LSM6DS0_ACC_GYRO_W_AccelerometerAxisY( (void *)this, LSM6DS0_ACC_GYRO_YEN_XL_ENABLE ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  if ( LSM6DS0_ACC_GYRO_W_AccelerometerAxisZ( (void *)this, LSM6DS0_ACC_GYRO_ZEN_XL_ENABLE ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  /* Enable BDU */
-  if ( LSM6DS0_ACC_GYRO_W_BlockDataUpdate( (void *)this, LSM6DS0_ACC_GYRO_BDU_ENABLE ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  /* Output data rate selection - power down. */
-  if ( LSM6DS0_ACC_GYRO_W_GyroDataRate( (void *)this, LSM6DS0_ACC_GYRO_ODR_G_POWER_DOWN ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  /* Full scale selection */
-  if ( Set_G_FS( 2000.0f ) == LSM6DS0_STATUS_ERROR )
-  {
-    return;
-  }
-
-  /* Enable axes */
-  if ( LSM6DS0_ACC_GYRO_W_GyroAxisX( (void *)this, LSM6DS0_ACC_GYRO_XEN_G_ENABLE ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  if ( LSM6DS0_ACC_GYRO_W_GyroAxisY( (void *)this, LSM6DS0_ACC_GYRO_YEN_G_ENABLE ) == MEMS_ERROR )
-  {
-    return;
-  }
-
-  if ( LSM6DS0_ACC_GYRO_W_GyroAxisZ( (void *)this, LSM6DS0_ACC_GYRO_ZEN_G_ENABLE ) == MEMS_ERROR )
-  {
-    return;
-  }
-  
-  X_Last_ODR = 119.0f;
-
-  X_isEnabled = 0;
-  
-  G_Last_ODR = 119.0f;
-
-  G_isEnabled = 0;
-};
-
 /** Constructor
  * @param i2c object of an helper class which handles the I2C peripheral
  * @param address the address of the component's instance
  */
 LSM6DS0Sensor::LSM6DS0Sensor(TwoWire *i2c, uint8_t address) : dev_i2c(i2c), address(address)
 {
+  dev_spi = NULL;
+  X_isEnabled = 0;
+  G_isEnabled = 0;
+}
+
+/** Constructor
+ * @param spi object of an helper class which handles the SPI peripheral
+ * @param cs_pin the chip select pin
+ * @param spi_speed the SPI speed
+ */
+LSM6DS0Sensor::LSM6DS0Sensor(SPIClass *spi, int cs_pin, uint32_t spi_speed) : dev_spi(spi), cs_pin(cs_pin), spi_speed(spi_speed)
+{
+  dev_i2c = NULL;
+  address = 0;
+  X_isEnabled = 0U;
+  G_isEnabled = 0U;
+}
+
+/**
+ * @brief  Configure the sensor in order to be used
+ * @retval 0 in case of success, an error code otherwise
+ */
+LSM6DS0StatusTypeDef LSM6DS0Sensor::begin()
+{
+  if(dev_spi)
+  {
+    // Configure CS pin
+    pinMode(cs_pin, OUTPUT);
+    digitalWrite(cs_pin, HIGH); 
+  }
+
   /* Enable BDU */
   if ( LSM6DS0_ACC_GYRO_W_BlockDataUpdate( (void *)this, LSM6DS0_ACC_GYRO_BDU_ENABLE ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   /* Output data rate selection - power down. */
   if ( LSM6DS0_ACC_GYRO_W_AccelerometerDataRate( (void *)this, LSM6DS0_ACC_GYRO_ODR_XL_POWER_DOWN ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   /* Full scale selection */
   if ( Set_X_FS( 2.0f ) == LSM6DS0_STATUS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   /* Enable axes */
   if ( LSM6DS0_ACC_GYRO_W_AccelerometerAxisX( (void *)this, LSM6DS0_ACC_GYRO_XEN_XL_ENABLE ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   if ( LSM6DS0_ACC_GYRO_W_AccelerometerAxisY( (void *)this, LSM6DS0_ACC_GYRO_YEN_XL_ENABLE ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   if ( LSM6DS0_ACC_GYRO_W_AccelerometerAxisZ( (void *)this, LSM6DS0_ACC_GYRO_ZEN_XL_ENABLE ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   /* Enable BDU */
   if ( LSM6DS0_ACC_GYRO_W_BlockDataUpdate( (void *)this, LSM6DS0_ACC_GYRO_BDU_ENABLE ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   /* Output data rate selection - power down. */
   if ( LSM6DS0_ACC_GYRO_W_GyroDataRate( (void *)this, LSM6DS0_ACC_GYRO_ODR_G_POWER_DOWN ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   /* Full scale selection */
   if ( Set_G_FS( 2000.0f ) == LSM6DS0_STATUS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   /* Enable axes */
   if ( LSM6DS0_ACC_GYRO_W_GyroAxisX( (void *)this, LSM6DS0_ACC_GYRO_XEN_G_ENABLE ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   if ( LSM6DS0_ACC_GYRO_W_GyroAxisY( (void *)this, LSM6DS0_ACC_GYRO_YEN_G_ENABLE ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
 
   if ( LSM6DS0_ACC_GYRO_W_GyroAxisZ( (void *)this, LSM6DS0_ACC_GYRO_ZEN_G_ENABLE ) == MEMS_ERROR )
   {
-    return;
+    return LSM6DS0_STATUS_ERROR;
   }
   
   X_Last_ODR = 119.0f;
@@ -212,7 +156,36 @@ LSM6DS0Sensor::LSM6DS0Sensor(TwoWire *i2c, uint8_t address) : dev_i2c(i2c), addr
   G_Last_ODR = 119.0f;
 
   G_isEnabled = 0;
-};
+
+  return LSM6DS0_STATUS_OK;
+}
+
+/**
+ * @brief  Disable the sensor and relative resources
+ * @retval 0 in case of success, an error code otherwise
+ */
+LSM6DS0StatusTypeDef LSM6DS0Sensor::end()
+{
+  /* Disable both acc and gyro */
+  if (Disable_X() != LSM6DS0_STATUS_OK)
+  {
+    return LSM6DS0_STATUS_ERROR;
+  }
+
+  if (Disable_G() != LSM6DS0_STATUS_OK)
+  {
+    return LSM6DS0_STATUS_ERROR;
+  }
+
+  /* Reset CS configuration */
+  if(dev_spi)
+  {
+    // Configure CS pin
+    pinMode(cs_pin, INPUT); 
+  }
+
+  return LSM6DS0_STATUS_OK;
+}
 
 /**
  * @brief  Enable LSM6DS0 Accelerator
